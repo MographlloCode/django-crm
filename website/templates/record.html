@@ -1,0 +1,19 @@
+{% extends 'partials/base.html' %}
+{% block content %}
+
+    {% if user.is_authenticated %}
+        <h1 class='my-4'>Customer: {{record.first_name}} {{record.last_name}}</h1>
+        <ul class='list-group'>
+            <li class='list-group-item'><strong>First Name:</strong> {{record.first_name}}</li>
+            <li class='list-group-item'><strong>Last Name:</strong> {{record.last_name}}</li>
+            <li class='list-group-item'><strong>Email:</strong> {{record.email}}</li>
+            <li class='list-group-item'><strong>Phone:</strong> {{record.phone}}</li>
+            <li class='list-group-item'><strong>Address:</strong> {{record.address}}</li>
+            <li class='list-group-item'><strong>City:</strong> {{record.city}}</li>
+            <li class='list-group-item'><strong>State:</strong> {{record.state}}</li>
+            <li class='list-group-item'><strong>Zip Code:</strong> {{record.zipcode}}</li>
+            <li class='list-group-item'><strong>Created At:</strong> {{record.created_at}}</li>
+        </ul>
+    {% endif %}
+
+{% endblock %}
