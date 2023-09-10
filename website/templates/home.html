@@ -1,0 +1,53 @@
+{% extends 'partials/base.html' %}
+{% block content %}
+
+    {% if user.is_authenticated %}
+        <h1 class='my-4'>Welcome, {{user.username}}!</h1>
+
+        {% if records %}
+            <table class="table table-responsive table-dark table-hover table-striped table-borderless">
+                <caption>List of clients: <strong>{{clients_ammount}}</strong></caption>
+                <thead>
+                    <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for record in records %}
+                        <tr>
+                            <td scope="row">{{ record.id }}</td>
+                            <td scope="row">{{ record.first_name }}</td>
+                            <td scope="row">{{ record.last_name }}</td>
+                            <td scope="row">{{ record.email }}</td>
+                            <td scope="row">{{ record.phone }}</td>
+                            <td scope="row"><a class='link-light' href='{% url 'record' record.id %}'>See more</a> or <a class='link-light' href='{% url 'update' record.id %}'>Edit</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+        
+
+    {% else %}
+        <div class='col-md-6 offset-md-3'>
+            <h1 class='mb-3'>Login</h1>
+            <form method='POST' action="{% url 'home'%}">
+                {% csrf_token %}
+                    <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" class="form-control" name='username', placeholder='Fill this box' required>
+                    </div>
+                    <div class="mb-4">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" name='password' placeholder='Fill this box' required>
+                    </div>
+                    <button type="submit" class="btn btn-secondary">Login</button>
+            </form>
+        </div>
+    {% endif %}
+{% endblock %}
