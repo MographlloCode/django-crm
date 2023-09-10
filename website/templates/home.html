@@ -25,12 +25,13 @@
                             <td scope="row">{{ record.last_name }}</td>
                             <td scope="row">{{ record.email }}</td>
                             <td scope="row">{{ record.phone }}</td>
-                            <td scope="row"><a class='link-light' href='{% url 'record' record.id %}'>See more</a></td>
+                            <td scope="row"><a class='link-light' href='{% url 'record' record.id %}'>See more</a> or <a class='link-light' href='{% url 'update' record.id %}'>Edit</a></td>
                         </tr>
                     {% endfor %}
                 </tbody>
             </table>
         {% endif %}
+        
 
     {% else %}
         <div class='col-md-6 offset-md-3'>

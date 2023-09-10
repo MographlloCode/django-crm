@@ -1,0 +1,23 @@
+{% extends 'partials/base.html' %}
+{% block content %}
+
+    {% if user.is_authenticated %}
+
+        <h1 class='my-4'>Update Customer</h1>
+        <form method='POST' action="">
+            {% csrf_token %}
+            {% for field in form %}
+                {% if field.errors %}
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <strong>{{ field.errors }}</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endif %}
+            {% endfor %}
+                
+            {{form.as_p}}
+            <button type="submit" class="btn btn-secondary">Update Customer</button>
+        </form>
+
+    {% endif %}
+{% endblock %}
